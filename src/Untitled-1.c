@@ -2,7 +2,7 @@
  * @Author: saury czh12581@126.com
  * @Date: 2024-02-29 09:54:39
  * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-14 18:25:43
+ * @LastEditTime: 2024-03-14 18:39:58
  * @FilePath: \d_code\src\Untitled-1.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,6 +22,8 @@ MyLinkedList* myLinkedListCreate()
     head->next=NULL;
     return head;
 }
+
+
 
 int myLinkedListGet(MyLinkedList* obj, int index)
 {
