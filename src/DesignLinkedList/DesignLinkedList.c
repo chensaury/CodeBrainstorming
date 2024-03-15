@@ -1,20 +1,15 @@
 /*
  * @Author: saury czh12581@126.com
- * @Date: 2024-02-29 09:54:39
+ * @Date: 2024-03-13 13:57:43
  * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-15 11:58:49
- * @FilePath: \d_code\src\Untitled-1.c
+ * @LastEditTime: 2024-03-15 12:23:19
+ * @FilePath: \CodeBrainstorming\src\DesignLinkedList\DesignLinkedList.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-typedef struct LinkedList{
-    int data;
-    struct LinkedList* next;
-} MyLinkedList;
+#include "DesignlinkedList.h"
 
 MyLinkedList* myLinkedListCreate() 
 {
@@ -157,9 +152,23 @@ void myLinkedListFree(MyLinkedList* obj)
     free(obj); // 释放虚拟头结点的内存
 }
 
+MyLinkedList* reverseList(MyLinkedList* head) {
+    MyLinkedList *temp = head;
+    MyLinkedList *outlist = NULL;
+    while (temp != NULL)
+    {
+        MyLinkedList *temporarynode = temp->next; //临时节点
+        temp->next = outlist; //指向输出
+        outlist = temp;
+        temp = temporarynode;
+    }
+    return outlist;  
+}
 
 
-int main(){
+
+int DesignAndOperateALinkedList(void)
+{
     MyLinkedList *list =(MyLinkedList *)malloc(sizeof(MyLinkedList));
     list->next=NULL;
     myLinkedListGet(list,0);
@@ -182,6 +191,18 @@ int main(){
     printf("list.data:%d\n",list->data);
     printf("list.next:%d\n",list->next);
     printf("list:%d\n",list);
+
+
+    MyLinkedList *a1= malloc(sizeof(MyLinkedList));
+    MyLinkedList *a2= malloc(sizeof(MyLinkedList));
+    MyLinkedList *a3= malloc(sizeof(MyLinkedList));
+    a1->data=1;
+    a2->data=2;
+    a3->data=3;
+    a1->next=a2;
+    a2->next=a3;
+    a3->next=NULL;
+    a1 = reverseList(a1);
     return 0;
 }
 

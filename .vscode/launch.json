@@ -11,7 +11,7 @@
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "D:\\Software Install\\mingw64\\bin\\gdb.exe",
+      "miDebuggerPath": "D:/Software Install/mingw64/bin/gdb.exe",
       "setupCommands": [
         {
           "description": "为 gdb 启用整齐打印",
@@ -35,7 +35,7 @@
       "cwd": "e:/2023/C/code/CodeBrainstorming/src",
       "program": "e:/2023/C/code/CodeBrainstorming/src/build/Debug/outDebug",
       "MIMode": "gdb",
-      "miDebuggerPath": "D:/Software Install/mingw64/bin/gdb.exe",
+      "miDebuggerPath": "gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
