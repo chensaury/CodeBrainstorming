@@ -2,7 +2,7 @@
  * @Author: saury czh12581@126.com
  * @Date: 2024-02-29 09:54:39
  * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-14 18:39:58
+ * @LastEditTime: 2024-03-14 21:03:58
  * @FilePath: \d_code\src\Untitled-1.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -26,7 +26,7 @@ MyLinkedList* myLinkedListCreate()
 
 
 int myLinkedListGet(MyLinkedList* obj, int index)
-{
+{   
     if(index<0)
     {
         return -1;
@@ -78,32 +78,72 @@ void myLinkedListAddAtTail(MyLinkedList* obj, int val)
     return ;
 }
 
+// /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+// void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) {
+// 	if (index <= 0) {
+// 		myLinkedListAddAtHead(obj, val);
+// 	}
+
+// 	int now = 0;
+// 	MyLinkedList *nowList = obj->next;
+// 	while (nowList->next != NULL) {
+// 		if (now == index - 1) {
+// 			break;
+// 		}
+// 		nowList = nowList->next;
+// 		now++;
+// 	}
+
+// 	if (index - 1 != now) {
+// 		return;
+// 	}
+
+// 	MyLinkedList *Node = (MyLinkedList *)malloc(sizeof(MyLinkedList));
+// 	Node->data = val;
+// 	Node->next = nowList->next;
+// 	nowList->next = Node;
+// }
+
+
+
+
+
+
+//带虚拟头结点，在链表指定位置插入新的值
 void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) 
 {
-    if(obj == NULL || index < 0) return; // 如果链表为空或索引无效，直接返回
-
-    MyLinkedList* new = myLinkedListCreate();
-    new->data = val;
-    
-    MyLinkedList* temp = obj;
-    
-    // 如果插入的位置是头节点
-    if(index == 0) {
-        new->next = temp;
-        obj = new;
+    if(obj == NULL || index <= 0)  // 如果链表为空或索引小于0
+    {
+        myLinkedListAddAtHead(obj, val);
         return;
     }
-    
-    MyLinkedList* pre = NULL;
-    for(int i = 0; temp != NULL && i < index; i++) {
-        pre = temp;
+    MyLinkedList* newhead = myLinkedListCreate();
+    newhead->data = val;
+    int i = 0 ;
+    MyLinkedList* temp = obj;
+    // while(temp->next!=NULL){
+    //     if(i<index){
+    //         temp=temp->next;
+    //         i++;
+    //     }
+    //     else{
+    //         break;
+    //     }
+    // }
+    // if(i!=index) return;
+    for(i = 0; temp != NULL && i < index; i++) // 循环直到达到指定位置的前一个节点,并判断指定位置是否为空
+    {
         temp = temp->next;
     }
-    
-    if(temp == NULL) return; // 超出链表长度
-    
-    pre->next = new; // 将前一个节点的 next 指向新节点
-    new->next = temp; // 将新节点的 next 指向原来的节点
+    if(i != index) 
+    {
+        // (temp == NULL || i != index - 1) 如果到达链表末尾或者索引位置不正确，则直接返回
+        return; 
+        // 如果索引位置不正确，则直接返回
+    }
+    newhead->next = temp->next; // 将新节点的 next 指向原来的节点
+    temp->next = newhead; // 将前一个节点的 next 指向新节点
+    return;
 }
 
 
@@ -214,7 +254,9 @@ int main(){
     myLinkedListAddAtHead(list,1);
     myLinkedListAddAtHead(list,2);
     myLinkedListAddAtTail(list,0);
-
+    myLinkedListAddAtIndex(list,0,1);
+    myLinkedListAddAtIndex(list,4,6);
+    myLinkedListAddAtIndex(list,7,9);
     // delate_node(head,3);
     // MyLinkedList *nhead= malloc(sizeof(MyLinkedList));
     // nhead->next=head;
