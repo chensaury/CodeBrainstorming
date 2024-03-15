@@ -2,13 +2,14 @@
  * @Author: saury czh12581@126.com
  * @Date: 2024-02-29 09:54:39
  * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-14 21:03:58
+ * @LastEditTime: 2024-03-15 11:58:49
  * @FilePath: \d_code\src\Untitled-1.c
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+
 
 typedef struct LinkedList{
     int data;
@@ -17,37 +18,41 @@ typedef struct LinkedList{
 
 MyLinkedList* myLinkedListCreate() 
 {
-    MyLinkedList *head=malloc(sizeof(MyLinkedList));
+    MyLinkedList *head=(MyLinkedList*)malloc(sizeof(MyLinkedList));
     head->data=0;
     head->next=NULL;
     return head;
 }
 
-
-
+//获取指定位置的值
 int myLinkedListGet(MyLinkedList* obj, int index)
 {   
+    MyLinkedList *temp = obj->next;//带有虚拟头结点，首元定义为.next
     if(index<0)
     {
+        printf("err: %d\n", -1);
         return -1;
     }
     for(int i=0; i<index; i++)
     {
-        if(obj!=NULL)
+        if(temp!=NULL)
         {
-            obj = obj->next;
+            temp = temp->next;
         }
         else
         {
+            printf("err: %d\n", -1);
             return -1;
         }   
     }
-    if(obj!=NULL)
+    if(temp!=NULL)
     {
-        return obj->data;
+        printf("temp: %d\n", temp->data);
+        return temp->data;
     }
     else
     {
+        printf("err: %d\n", -1);
         return -1;
     }
 }
@@ -78,37 +83,6 @@ void myLinkedListAddAtTail(MyLinkedList* obj, int val)
     return ;
 }
 
-// /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
-// void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) {
-// 	if (index <= 0) {
-// 		myLinkedListAddAtHead(obj, val);
-// 	}
-
-// 	int now = 0;
-// 	MyLinkedList *nowList = obj->next;
-// 	while (nowList->next != NULL) {
-// 		if (now == index - 1) {
-// 			break;
-// 		}
-// 		nowList = nowList->next;
-// 		now++;
-// 	}
-
-// 	if (index - 1 != now) {
-// 		return;
-// 	}
-
-// 	MyLinkedList *Node = (MyLinkedList *)malloc(sizeof(MyLinkedList));
-// 	Node->data = val;
-// 	Node->next = nowList->next;
-// 	nowList->next = Node;
-// }
-
-
-
-
-
-
 //带虚拟头结点，在链表指定位置插入新的值
 void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) 
 {
@@ -131,7 +105,7 @@ void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val)
     //     }
     // }
     // if(i!=index) return;
-    for(i = 0; temp != NULL && i < index; i++) // 循环直到达到指定位置的前一个节点,并判断指定位置是否为空
+    for(i = 0; temp->next != NULL && i < index; i++) // 循环直到达到指定位置的前一个节点,并判断指定位置是否为空
     {
         temp = temp->next;
     }
@@ -146,123 +120,69 @@ void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val)
     return;
 }
 
-
-// void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) 
-// {
-//     MyLinkedList* new = malloc(sizeof(MyLinkedList));
-//     new->data = val;
-//     if(index < 0 || (obj) == NULL) return;
-//     // 如果插入的值位于队首
-//     if(index == 0) {
-//         new->next = (obj->next);
-//         (obj->next) = new;
-//         return;
-//     }
-//     // // 如果插入的值不位于队首
-//     // MyLinkedList* temp = obj;
-//     // MyLinkedList* pre = obj;  
-//     // for(int i = 0; i < index; i++) {
-//     //     pre = temp;
-//     //     temp = temp->next;   
-//     //     if(temp == NULL) {
-//     //         break; // 防止访问空指针
-//     //     }
-//     // } 
-//     // pre->next = new;
-//     // new->next = temp;
-// }
-
-void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) 
-{
-    MyLinkedList *temp = obj;
+ //删除指定位置的值
+ void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) 
+ {
+    MyLinkedList *temp = obj->next;
+    if((obj==NULL) || (obj->next==NULL) || index<0) return;
     // 如果要删除的是头结点
-    while(obj!=NULL&&obj->data==index)
-    {
-        obj=temp->next;
-        free(temp);
-    }
-    // 如果要删除的不是头结点
-    MyLinkedList *pre = NULL;
-    while(temp!=NULL&&temp->data!=index)  //循环赋值查找，找到后退出循环
+    MyLinkedList *pre = obj;
+    int i = 0;
+    while(temp->next!=NULL&& i<index)  //循环赋值查找，找到后退出循环
     {
         pre=temp; //存储上一次的值
         temp=temp->next; //赋新值，如果满足条件，退出
+        i++;
     }
-    pre->next=temp->next;//删除节点
-    free(temp);
-// 如果要删除的节点不存在
-    if(temp==NULL)
+    if(i!=index)// 如果要删除的节点不存在
     {
         return;
     }
-}
+    pre->next=temp->next;//删除节点
+ }
 
-void myLinkedListFree(MyLinkedList* obj) {}
-
-
-
-
-
-
-
-
-
-MyLinkedList *NEWlistnode(int index)
+//释放链表内存
+void myLinkedListFree(MyLinkedList* obj) 
 {
-        MyLinkedList *head=malloc(sizeof(MyLinkedList));
-        head->data=index;
-        head->next=NULL;
-
-        return head;
-}
-
-
-void delate_node(MyLinkedList *head,int data)
-{
-    MyLinkedList *temp = head;
-    // 如果要删除的是头结点
-    while(head!=NULL&&head->data==data)
+    if (obj == NULL)
+        return ;
+    MyLinkedList* current = obj->next;
+    MyLinkedList* temp = myLinkedListCreate();
+    while (current != NULL) 
     {
-        head=temp->next;
+        temp = current;
+        current = current->next;
         free(temp);
     }
-    // 如果要删除的不是头结点
-    MyLinkedList *pre;
-    while(temp!=NULL&&temp->data!=data)  //循环赋值查找，找到后退出循环
-    {
-        pre=temp; //存储上一次的值
-        temp=temp->next; //赋新值，如果满足条件，退出
-    }
-    pre->next=temp->next;//删除节点
-    free(temp);
-// 如果要删除的节点不存在
-    if(temp==NULL)
-    {
-        return;
-    }
-
-    // return head;
+    free(obj); // 释放虚拟头结点的内存
 }
-
-
 
 
 
 int main(){
     MyLinkedList *list =(MyLinkedList *)malloc(sizeof(MyLinkedList));
     list->next=NULL;
+    myLinkedListGet(list,0);
     myLinkedListAddAtHead(list,1);
     myLinkedListAddAtHead(list,2);
     myLinkedListAddAtTail(list,0);
+    myLinkedListGet(list,2);
+    myLinkedListGet(list,4);
     myLinkedListAddAtIndex(list,0,1);
     myLinkedListAddAtIndex(list,4,6);
     myLinkedListAddAtIndex(list,7,9);
-    // delate_node(head,3);
-    // MyLinkedList *nhead= malloc(sizeof(MyLinkedList));
-    // nhead->next=head;
-    // myLinkedListAddAtIndex(head,0,1);
-     //delate_node(head,4);
-    // creat_new_node(&head,4);
+    myLinkedListDeleteAtIndex(list,0);
+    myLinkedListDeleteAtIndex(list,4);
+    myLinkedListDeleteAtIndex(list,5);
+    myLinkedListDeleteAtIndex(list,3);
+    myLinkedListDeleteAtIndex(list,2);
+    myLinkedListDeleteAtIndex(list,1);
+    myLinkedListDeleteAtIndex(list,0);
+    myLinkedListDeleteAtIndex(list,0);
+    printf("list.data:%d\n",list->data);
+    printf("list.next:%d\n",list->next);
+    printf("list:%d\n",list);
+    return 0;
 }
 
 
