@@ -1,14 +1,20 @@
 /*
- * @Author: saury czh12581@126.com
+ * @Author: bill.chen
  * @Date: 2024-03-15 12:11:24
- * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-15 21:03:00
+ * @LastEditTime: 2024-03-18 15:05:52
+ * @LastEditors: bill.chen
+ * @Description: 代码随想录
  * @FilePath: \CodeBrainstorming\src\main.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * 1344729759@qq.com
  */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "DesignLinkedList.h"
+
+
 
 
 

@@ -1,16 +1,22 @@
 /*
- * @Author: saury czh12581@126.com
+ * @Author: bill.chen
  * @Date: 2024-03-13 13:57:43
- * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-15 12:23:19
+ * @LastEditTime: 2024-03-18 15:10:47
+ * @LastEditors: bill.chen
+ * @Description: 代码随想录
  * @FilePath: \CodeBrainstorming\src\DesignLinkedList\DesignLinkedList.c
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * 1344729759@qq.com
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "DesignlinkedList.h"
 
+/**
+ * @description: 创建链表
+ * @param {MyLinkedList} *head
+ * @return {*}
+ */
 MyLinkedList* myLinkedListCreate() 
 {
     MyLinkedList *head=(MyLinkedList*)malloc(sizeof(MyLinkedList));
@@ -19,7 +25,16 @@ MyLinkedList* myLinkedListCreate()
     return head;
 }
 
-//获取指定位置的值
+
+/**
+ * @description: 获取链表指定位置的值
+ * @param {MyLinkedList*} obj
+ * @param {int} index
+ * @param {  } return
+ * @param {  } return
+ * @param {return} temp
+ * @return {*}
+ */
 int myLinkedListGet(MyLinkedList* obj, int index)
 {   
     MyLinkedList *temp = obj->next;//带有虚拟头结点，首元定义为.next
@@ -52,7 +67,12 @@ int myLinkedListGet(MyLinkedList* obj, int index)
     }
 }
 
-//带有虚拟头结点头插法
+/**
+ * @description: 带有虚拟头结点头插法
+ * @param {MyLinkedList*} obj
+ * @param {int} val
+ * @return {*}
+ */
 void myLinkedListAddAtHead(MyLinkedList* obj, int val)
 {
     MyLinkedList *newhead = myLinkedListCreate();
@@ -63,7 +83,12 @@ void myLinkedListAddAtHead(MyLinkedList* obj, int val)
     return;
 }
 
-//带有虚拟头结点尾插法
+/**
+ * @description: 带有虚拟头结点尾插法
+ * @param {MyLinkedList*} obj
+ * @param {int} val
+ * @return {*}
+ */
 void myLinkedListAddAtTail(MyLinkedList* obj, int val) 
 {
     MyLinkedList* temp = obj;
@@ -78,7 +103,15 @@ void myLinkedListAddAtTail(MyLinkedList* obj, int val)
     return ;
 }
 
-//带虚拟头结点，在链表指定位置插入新的值
+/**
+ * @description: 带虚拟头结点，在链表指定位置插入新的值
+ * @param {MyLinkedList*} obj
+ * @param {int} index
+ * @param {int} val
+ * @param {  } return
+ * @param {  } temp
+ * @return {*}
+ */
 void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val) 
 {
     if(obj == NULL || index <= 0)  // 如果链表为空或索引小于0
@@ -115,7 +148,13 @@ void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val)
     return;
 }
 
- //删除指定位置的值
+ 
+ /**
+  * @description: 删除指定位置的值
+  * @param {MyLinkedList*} obj
+  * @param {int} index
+  * @return {*}
+  */
  void myLinkedListDeleteAtIndex(MyLinkedList* obj, int index) 
  {
     MyLinkedList *temp = obj->next;
@@ -136,7 +175,12 @@ void myLinkedListAddAtIndex(MyLinkedList* obj, int index, int val)
     pre->next=temp->next;//删除节点
  }
 
-//释放链表内存
+
+/**
+ * @description: 释放链表内存
+ * @param {MyLinkedList*} obj
+ * @return {*}
+ */
 void myLinkedListFree(MyLinkedList* obj) 
 {
     if (obj == NULL)
@@ -152,6 +196,11 @@ void myLinkedListFree(MyLinkedList* obj)
     free(obj); // 释放虚拟头结点的内存
 }
 
+/**
+ * @description: 链表翻转
+ * @param {MyLinkedList*} head
+ * @return {*}
+ */
 MyLinkedList* reverseList(MyLinkedList* head) {
     MyLinkedList *temp = head;
     MyLinkedList *outlist = NULL;
