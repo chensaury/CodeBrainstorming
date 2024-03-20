@@ -1,7 +1,7 @@
 /*
  * @Author: bill.chen
  * @Date: 2024-03-13 13:57:43
- * @LastEditTime: 2024-03-18 15:10:47
+ * @LastEditTime: 2024-03-19 13:23:21
  * @LastEditors: bill.chen
  * @Description: 代码随想录
  * @FilePath: \CodeBrainstorming\src\DesignLinkedList\DesignLinkedList.c
@@ -215,6 +215,89 @@ MyLinkedList* reverseList(MyLinkedList* head) {
 }
 
 
+/**
+ * @description: 删除带虚拟头结点链表的倒数第 n 个结点
+ * @param {ListNode*} head
+ * @param {int} n
+ * @return {*}
+ */
+MyLinkedList* removeNthFromEnd(MyLinkedList* head, int n) {
+    MyLinkedList* temp = head;
+    if(temp==NULL) return head;
+    int i = 0;
+    while (temp->next!=NULL)
+    {
+        temp = temp->next;
+        i++;
+    }
+    if(n>i||n<=0) return head;
+    MyLinkedList* headNode = head;
+    MyLinkedList* tailNode = head->next;
+    int m = 0;
+    while((tailNode!=NULL)&&(m < (i-n)))
+    {
+        headNode = tailNode;
+        tailNode = tailNode->next;
+        m++;
+    }
+    // if(m != (i-n)+1) return head;
+    headNode->next = tailNode->next;
+    tailNode = headNode;
+    return head; 
+}
+
+/**
+ * @description: 删除链表的倒数第n个节点
+ * @param {MyLinkedList*} head
+ * @param {int} n
+ * @return {*}
+ */
+MyLinkedList* removeNthFromEndNode(MyLinkedList* head, int n) {
+    MyLinkedList* temp = head;
+    if(temp==NULL) return head;
+    int i = 0;
+    while (temp!=NULL)
+    {
+        temp = temp->next;
+        i++;
+    }
+    if(n>i||n<=0) return head;
+    MyLinkedList* headNode = (MyLinkedList*)malloc(sizeof(MyLinkedList));
+    headNode->data = 0;
+    headNode->next = head;
+
+    MyLinkedList* tailNode = headNode;
+    MyLinkedList* dele = NULL;
+    int m = 0;
+    for(int m = 0; m<i-n; m++)//到要删除的前一个节点
+    {
+        tailNode = tailNode->next;
+    }
+
+    tailNode->next = tailNode->next->next;
+
+    return headNode->next;
+}
+
+/**
+ * @description: 无虚拟头结点倒数删除第n个测试
+ * @param {MyLinkedList*} a
+ * @return {*}
+ */
+int testremoveNthFromEnd()
+{
+    MyLinkedList* a = malloc(sizeof(MyLinkedList));
+    MyLinkedList* b = malloc(sizeof(MyLinkedList));
+    MyLinkedList* c = malloc(sizeof(MyLinkedList));   
+    a->data = 1;
+    b->data = 2;
+    c->data = 3;
+    a->next=b;
+    b->next=c;
+    c->next=NULL;
+    removeNthFromEndNode(a, 1);
+}
+
 
 int DesignAndOperateALinkedList(void)
 {
@@ -224,6 +307,10 @@ int DesignAndOperateALinkedList(void)
     myLinkedListAddAtHead(list,1);
     myLinkedListAddAtHead(list,2);
     myLinkedListAddAtTail(list,0);
+
+    removeNthFromEnd(list,1);
+
+
     myLinkedListGet(list,2);
     myLinkedListGet(list,4);
     myLinkedListAddAtIndex(list,0,1);

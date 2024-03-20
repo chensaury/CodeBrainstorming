@@ -3,7 +3,7 @@
     {
       "name": "windows-gcc-x64",
       "includePath": [
-        "${workspaceFolder}/src/DesignLinkedList",
+        // "${workspaceFolder}/src/DesignLinkedList",
         "${workspaceFolder}/**"
       ],
       "compilerPath": "D:/Software Install/mingw64/bin/gcc.exe",

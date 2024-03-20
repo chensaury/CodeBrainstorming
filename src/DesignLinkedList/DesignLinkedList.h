@@ -39,6 +39,12 @@ void myLinkedListFree(MyLinkedList* obj);
 //Reverse the linked list.
 MyLinkedList* reverseList(MyLinkedList* head);
 
+MyLinkedList* removeNthFromEnd(MyLinkedList* head, int n);
+
+MyLinkedList* removeNthFromEndNode(MyLinkedList* head, int n);
+
+int testremoveNthFromEnd();
+
 // Realization of linked list function
 int DesignAndOperateALinkedList(void);
 
