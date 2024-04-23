@@ -299,6 +299,91 @@ int testremoveNthFromEnd()
 }
 
 
+/**
+ * @description: 链表相交
+ * @param {MyLinkedList} *headA
+ * @param {MyLinkedList} *headB
+ * @param {  } while
+ * @return {*}
+ */
+MyLinkedList *getIntersectionNode(MyLinkedList *headA, MyLinkedList *headB) {
+    // 创建虚拟头结点
+    MyLinkedList* tempheada = malloc(sizeof(MyLinkedList));
+    MyLinkedList* tempheadb = malloc(sizeof(MyLinkedList));
+    tempheada->next = headA;
+    tempheadb->next = headB;
+    MyLinkedList* perheada = tempheada;
+    MyLinkedList* perheadb = tempheadb;
+    int ai = 0, bi = 0;
+    
+    // 查询链表长度
+    while (perheada->next != NULL) {
+        perheada = perheada->next;
+        ai++;
+    }
+    while (perheadb->next != NULL) {
+        perheadb = perheadb->next;
+        bi++;
+    }
+    
+    // 重新赋值
+    perheada = tempheada;
+    perheadb = tempheadb;
+    
+    // 移动到长度对齐的前一个节点
+    if (ai >= bi) {
+        int m = ai - bi;
+        for (int j = 0; j < m; j++) {
+            perheada = perheada->next;
+        }
+    } else {
+        int m = bi - ai;
+        for (int j = 0; j < m; j++) {
+            perheadb = perheadb->next;
+        }
+    }
+    
+    // 找到交点
+    while (perheada->next != NULL && perheadb->next != NULL) {
+        if (perheada->next == perheadb->next) {
+            return perheada->next;
+        }
+        perheada = perheada->next;
+        perheadb = perheadb->next;
+    }
+    
+    // 没有交点
+    return NULL;
+}
+
+
+
+/**
+ * @description: 链表测试
+ * @param {MyLinkedList} *list
+ * @param {  } myLinkedListAddAtHead
+ * @param {  } myLinkedListAddAtHead
+ * @param {  } myLinkedListAddAtTail
+ * @param {  } removeNthFromEnd
+ * @param {  } myLinkedListGet
+ * @param {  } myLinkedListGet
+ * @param {  } myLinkedListAddAtIndex
+ * @param {  } myLinkedListAddAtIndex
+ * @param {  } myLinkedListAddAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } myLinkedListDeleteAtIndex
+ * @param {  } printf
+ * @param {  } printf
+ * @param {  } printf
+ * @param {MyLinkedList} *a1
+ * @return {*}
+ */
 int DesignAndOperateALinkedList(void)
 {
     MyLinkedList *list =(MyLinkedList *)malloc(sizeof(MyLinkedList));

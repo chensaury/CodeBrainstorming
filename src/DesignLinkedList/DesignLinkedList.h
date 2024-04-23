@@ -1,10 +1,11 @@
-/*
- * @Author: saury czh12581@126.com
+/*** 
+ * @Author: bill.chen
  * @Date: 2024-03-15 12:12:37
- * @LastEditors: saury czh12581@126.com
- * @LastEditTime: 2024-03-15 15:54:20
+ * @LastEditTime: 2024-04-20 14:47:30
+ * @LastEditors: bill.chen
+ * @Description: 代码随想录
  * @FilePath: \CodeBrainstorming\src\DesignLinkedList\DesignLinkedList.h
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @1344729759@qq.com
  */
 #ifndef DESIGNLINKEDLIST_H
 #define DESIGNLINKEDLIST_H
@@ -39,15 +40,20 @@ void myLinkedListFree(MyLinkedList* obj);
 //Reverse the linked list.
 MyLinkedList* reverseList(MyLinkedList* head);
 
+//Delete The County Node Of The Linked List
 MyLinkedList* removeNthFromEnd(MyLinkedList* head, int n);
 
+//Delete The County Node Of The Linked List
 MyLinkedList* removeNthFromEndNode(MyLinkedList* head, int n);
 
+//无虚拟头结点倒数删除第n个测试
 int testremoveNthFromEnd();
+
+//链表相交
+MyLinkedList *getIntersectionNode(MyLinkedList *headA, MyLinkedList *headB);
 
 // Realization of linked list function
 int DesignAndOperateALinkedList(void);
-
 
 #endif /* DESIGNLINKEDLIST_H */
 

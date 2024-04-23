@@ -1,19 +1,20 @@
 {
-  "configurations": [
-    {
-      "name": "windows-gcc-x64",
-      "includePath": [
-        // "${workspaceFolder}/src/DesignLinkedList",
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "D:/Software Install/mingw64/bin/gcc.exe",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64",
-      "compilerArgs": [
-        ""
-      ]
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "windows-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/src/DesignStackAndQueue",
+                "${workspaceFolder}/src/DesignLinkedList"
+            ],
+            "compilerPath": "D:/Software Install/mingw64/bin/gcc.exe",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
 }

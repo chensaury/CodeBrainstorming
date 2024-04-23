@@ -11,7 +11,9 @@
 				// "${file}",
 				"${workspaceFolder}\\src\\*.c ",
 				"${workspaceFolder}\\src\\DesignLinkedList\\*.c ",
+				"${workspaceFolder}\\src\\DesignStackAndQueue\\*.c ",
 				"-I","${workspaceFolder}\\src\\DesignLinkedList",
+				"-I","${workspaceFolder}\\src\\DesignStackAndQueue",
 				"-o",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe",
 				""
