@@ -13,6 +13,12 @@
 #include <stdbool.h>
 #include "DesignStackAndQueue.h"
 
+
+/************************************************
+ * 1、使用两个栈创建一个队列 
+ * 2、使用队列创建一个栈
+ * **********************************************/
+
 /**
  * @description: 创建一个新的栈
  * @param {int} capacity
@@ -197,6 +203,7 @@ void myQueueFree(MyQueue* obj)
 }
 
 /**
+ * 使用两个栈创建队列
  * 设计并操作队列和栈的示例函数。
  * 演示如何创建队列，向队列中添加元素，
  * 查看队首元素，移除队首元素，并检查队列是否为空。
@@ -254,6 +261,44 @@ int DesignAndOperateQueuestack(void)
 */
 
 
+/****************使用队列创建一个栈***********************/
 
+Mystack* myStackCreate() {
+    
+}
+
+void myStackPush(Mystack* obj, int x) {
+    
+}
+
+int myStackPop(Mystack* obj) {
+    
+}
+
+int myStackTop(Mystack* obj) {
+    
+}
+
+bool myStackEmpty(Mystack* obj) {
+    
+}
+
+void myStackFree(Mystack* obj) {
+    
+}
+
+/**
+ * Your MyStack struct will be instantiated and called as such:
+ * MyStack* obj = myStackCreate();
+ * myStackPush(obj, x);
+ 
+ * int param_2 = myStackPop(obj);
+ 
+ * int param_3 = myStackTop(obj);
+ 
+ * bool param_4 = myStackEmpty(obj);
+ 
+ * myStackFree(obj);
+*/
 
 

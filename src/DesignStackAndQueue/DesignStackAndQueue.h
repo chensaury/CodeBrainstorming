@@ -1,7 +1,7 @@
 /*** 
  * @Author: bill.chen
  * @Date: 2024-04-20 14:45:42
- * @LastEditTime: 2024-04-23 09:20:10
+ * @LastEditTime: 2024-05-07 10:02:27
  * @LastEditors: bill.chen
  * @Description: 代码随想录
  * @FilePath: \CodeBrainstorming\src\DesignStackAndQueue\DesignStackAndQueue.h
@@ -24,7 +24,21 @@ typedef struct {
     Mystack* stackout;
 } MyQueue;
 
+/** 使用队列创建栈 */
+Mystack* myStackCreate();
 
+void myStackPush(Mystack* obj, int x);
+
+int myStackPop(Mystack* obj);
+
+int myStackTop(Mystack* obj);
+
+bool myStackEmpty(Mystack* obj);
+
+void myStackFree(Mystack* obj);
+
+
+/** 使用栈创建队列 */
 MyQueue* myQueueCreate() ;
 
 void myQueuePush(MyQueue* obj, int x) ;
